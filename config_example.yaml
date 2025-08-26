@@ -1,0 +1,53 @@
+# Пример конфигурации PTT приложения
+# Скопируйте этот файл в config.yaml и настройте под свои нужды
+
+# Основные настройки
+ptt_key: "f9"
+enable_sound_notifications: true
+enable_visual_feedback: true
+auto_start_with_windows: false
+check_updates: false
+
+# Настройки аудио
+audio:
+  sample_rate: 16000
+  channels: 1
+  device: null  # null = системное устройство по умолчанию
+  max_buffer_size: 30  # максимальный размер буфера в секундах
+  chunk_duration: 0.1  # длительность чанка в секундах
+
+# Настройки Whisper
+whisper:
+  model: "small"  # tiny, base, small, medium, large, large-v3
+  device: "auto"  # auto, cpu, cuda
+  compute_type: "int8"  # int8, int16, float16, float32
+  language: "ru"  # язык для распознавания
+  sample_rate: 16000  # частота дискретизации
+  vad_filter: false  # Voice Activity Detection
+  beam_size: 1
+  best_of: 1
+  temperature: 0.0
+
+# Настройки Ollama
+ollama:
+  url: "http://127.0.0.1:11434/api/generate"
+  model: "qwen2.5:7b-instruct"
+  timeout: 10.0
+  max_retries: 3
+  retry_delay: 1.0
+
+# Настройки вставки текста
+text_injection:
+  autopaste: true  # автоматическая вставка
+  type_fallback: true  # fallback на набор по символам
+  paste_delay: 0.05  # задержка между операциями вставки
+  type_delay: 0.0  # задержка между символами при наборе
+  restore_clipboard: true  # восстановление буфера обмена
+
+# Настройки логирования
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+  path: "ptt.log"
+  max_size_mb: 10
+  backup_count: 3
+  format: "json"  # json или text
